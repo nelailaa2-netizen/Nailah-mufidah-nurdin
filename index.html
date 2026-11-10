@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Menghitung Tarif Parkir</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eaf2f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            width: 320px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        h2 {
+            color: #1769aa;
+        }
+
+        p {
+            color: #555;
+        }
+
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 1px solid #aaa;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #1769aa;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0d4778;
+        }
+
+        #hasil {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #1769aa;
+            font-size: 18px;
+        }
+
+        .aturan {
+            background: #f0f6fc;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-top: 20px;
+        }
+
+        footer {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            color: #555;
+            font-size: 13px;
+        }
+
+        footer h3 {
+            color: #1769aa;
+            margin: 8px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>🅿️ Tarif Parkir</h2>
+
+        <p>Masukkan lama parkir kendaraan Anda.</p>
+
+        <input
+            type="number"
+            id="lamaParkir"
+            placeholder="Lama parkir (jam)"
+            min="1"
+            step="1"
+        >
+
+        <button onclick="hitungTarif()">
+            Hitung Tarif
+        </button>
+
+        <div id="hasil"></div>
+
+        <div class="aturan">
+            <b>Ketentuan Tarif Parkir</b>
+            <p>1 jam pertama: Rp5.000</p>
+            <p>Setiap jam berikutnya: Rp2.000</p>
+        </div>
+
+        <!-- KAKI WEBSITE -->
+        <footer>
+            <p>Website ini dibuat oleh:</p>
+            <h3>Nailah Mufidah Nurdin</h3>
+            <p>Program Menghitung Tarif Parkir</p>
+        </footer>
+
+    </div>
+
+    <script>
+        function hitungTarif() {
+
+            // Mengambil input lama parkir
+            let lamaParkir = document.getElementById("lamaParkir").value;
+
+            let hasil = document.getElementById("hasil");
+
+            // Memeriksa input
+            if (
+                lamaParkir === "" ||
+                Number(lamaParkir) < 1 ||
+                !Number.isInteger(Number(lamaParkir))
+            ) {
+                hasil.innerHTML = "Masukkan lama parkir yang valid!";
+                return;
+            }
+
+            lamaParkir = Number(lamaParkir);
+
+            let tarif;
+
+            // Menghitung tarif parkir
+            if (lamaParkir === 1) {
+                tarif = 5000;
+            } else {
+                tarif = 5000 + (lamaParkir - 1) * 2000;
+            }
+
+            // Menampilkan hasil tarif
+            hasil.innerHTML =
+                "Total Tarif Parkir: Rp" +
+                tarif.toLocaleString("id-ID");
+        }
+    </script>
+
+</body>
+</html>
